@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --bg: #0b1020;
+  --panel: #0f1724;
+  --accent: #9b6cff;
+  --glow: #7ee7ff;
+  --highlight: #ffd57e;
+}
+
+/* cinematic background gradient */
+body {
+  @apply bg-gradient-to-br from-[#06080f] to-[#071024] text-white font-display;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* subtle film grain overlay */
+#grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+/* shine mask for cards */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: translateX(-120%);
+  animation: shine 2.2s linear infinite;
+  opacity: 0.8;
+}
+
+/* custom keyframe registered inline to ensure fallback */
+@keyframes shine { 
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+  }
